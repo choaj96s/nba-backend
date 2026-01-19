@@ -1,15 +1,28 @@
 version: "3.9"
+
 services:
   redis:
     image: redis:7
+    container_name: redis
     ports:
       - "6379:6379"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 2s
+      retries: 5
+
   backend:
-    build: .
+    build:
+      context: ./
+    container_name: nba-backend
     ports:
       - "8080:8080"
-    depends_on:
-      - redis
     environment:
-      - SPRING_REDIS_HOST=redis
-      - SPRING_REDIS_PORT=6379
+      SPRING_PROFILES_ACTIVE: dev
+      SPRING_REDIS_HOST: redis
+      SPRING_REDIS_PORT: 6379
+    depends_on:
+      redis:
+        condition: service_healthy
