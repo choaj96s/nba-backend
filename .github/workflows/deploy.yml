@@ -22,7 +22,7 @@ jobs:
 
       - name: Login to ECR
         id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v3
+        uses: aws-actions/amazon-ecr-login@v2
 
       - name: Build, Tag, and Push Docker image
         run: |
@@ -30,9 +30,6 @@ jobs:
           docker build -t $IMAGE_URI .
           docker push $IMAGE_URI
 
-      # ----------------------------
-      # deploy.sh 파일을 EC2로 복사
-      # ----------------------------
       - name: Copy deploy script to EC2
         uses: appleboy/scp-action@v0.1.3
         with:
@@ -42,9 +39,6 @@ jobs:
           source: "./deploy.sh"
           target: "/home/ec2-user/deploy.sh"
 
-      # ----------------------------
-      # EC2에서 deploy.sh 실행
-      # ----------------------------
       - name: Deploy to EC2
         uses: appleboy/ssh-action@v0.1.6
         with:
