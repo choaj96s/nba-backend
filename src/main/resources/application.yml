@@ -10,11 +10,9 @@ spring:
       region:
         static: us-west-2
 
-    config:
-      import: "aws-secretsmanager:/nba/balldontlie"
+aws:
+  secret-name: nba/balldontlie
 
-balldontlie:
-  apiKey: ${BALDONTLIE_API_KEY}
 ---
 spring:
   config:
