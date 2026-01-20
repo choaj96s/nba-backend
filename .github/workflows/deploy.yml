@@ -41,7 +41,7 @@ jobs:
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ec2-user
-          key_path: $HOME/.ssh/nba_ec2
+          key_path: ~/.ssh/nba_ec2
           source: deploy.sh
           target: /home/ec2-user/
 
@@ -50,7 +50,8 @@ jobs:
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ec2-user
-          key_path: $HOME/.ssh/nba_ec2
+          key_path: ~/.ssh/nba_ec2
           script: |
             chmod +x /home/ec2-user/deploy.sh
             /home/ec2-user/deploy.sh
+      
