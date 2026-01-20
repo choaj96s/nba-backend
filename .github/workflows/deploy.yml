@@ -36,21 +36,21 @@ jobs:
           echo "${{ secrets.EC2_SSH_KEY }}" > $HOME/.ssh/nba_ec2
           chmod 600 $HOME/.ssh/nba_ec2
 
-      - name: Copy deploy.sh to EC2
-        uses: appleboy/scp-action@v0.1.3
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ec2-user
-          key_path: ${{ runner.home }}/.ssh/nba_ec2
-          source: deploy.sh
-          target: /home/ec2-user/
+          - name: Copy deploy.sh to EC2
+            uses: appleboy/scp-action@v0.1.3
+            with:
+              host: ${{ secrets.EC2_HOST }}
+              username: ec2-user
+              key_path: $HOME/.ssh/nba_ec2
+              source: deploy.sh
+              target: /home/ec2-user/
 
-      - name: Run deploy script
-        uses: appleboy/ssh-action@v0.1.6
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ec2-user
-          key_path: ${{ runner.home }}/.ssh/nba_ec2
-          script: |
-            chmod +x /home/ec2-user/deploy.sh
-            /home/ec2-user/deploy.sh
+          - name: Run deploy script
+            uses: appleboy/ssh-action@v0.1.6
+            with:
+              host: ${{ secrets.EC2_HOST }}
+              username: ec2-user
+              key_path: $HOME/.ssh/nba_ec2
+              script: |
+                chmod +x /home/ec2-user/deploy.sh
+                /home/ec2-user/deploy.sh
