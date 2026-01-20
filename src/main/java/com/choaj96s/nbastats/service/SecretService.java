@@ -4,6 +4,8 @@ import com.choaj96s.nbastats.properties.SecretProperties;
 import org.springframework.stereotype.Service;
 import software.amazon.awssdk.services.secretsmanager.SecretsManagerClient;
 import software.amazon.awssdk.services.secretsmanager.model.GetSecretValueRequest;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.ObjectMapper;
 
 @Service
 public class SecretService {
@@ -22,6 +24,13 @@ public class SecretService {
                 .secretId(secretProperties.getSecretName())
                 .build();
 
-        return secretsManagerClient.getSecretValue(request).secretString();
+        String secretJson = secretsManagerClient.getSecretValue(request).secretString();
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            JsonNode node = objectMapper.readTree(secretJson);
+            return node.get("BALDONTLIE_API_KEY").asString();
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to parse secret JSON", e);
+        }
     }
 }
