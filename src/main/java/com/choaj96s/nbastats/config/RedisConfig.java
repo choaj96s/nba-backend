@@ -15,12 +15,4 @@ public class RedisConfig {
         template.setConnectionFactory(factory);
         return template;
     }
-
-//    @Bean
-//    public CommandLineRunner redisCheck(RedisConnectionFactory factory) {
-//        return args -> {
-//            System.out.println("Redis connection class: " + factory.getClass().getName());
-//            System.out.println("Redis host: " + factory.getConnection().getClientName());
-//        };
-//    }
 }

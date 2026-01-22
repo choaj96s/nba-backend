@@ -11,7 +11,8 @@ spring:
         static: us-west-2
 
 aws:
-  secret-name: nba/balldontlie
+  balldontlie-secret-name: nba/balldontlie
+  openai-secret-name: nba/openai
 
 ---
 spring:

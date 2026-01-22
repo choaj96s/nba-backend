@@ -14,8 +14,13 @@ public class SecretController {
         this.secretService = secretService;
     }
 
-    @GetMapping("/secret")
-    public String getSecret() {
-        return secretService.getSecret();
+    @GetMapping("/balldontlie_secret")
+    public String getBallDontLieSecret() {
+        return secretService.getBallDontLieSecret();
+    }
+
+    @GetMapping("/openai_secret")
+    public String getOpenAISecret() {
+        return secretService.getOpenAISecret();
     }
 }
