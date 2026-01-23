@@ -42,13 +42,4 @@ public class BalldontlieController {
         return balldontlieService.getGames(dates, teamIds, seasons, postseason, startDate, endDate, cursor, perPage);
     }
 
-//    @GetMapping("/game-summary")
-//    public String getGameSummary(
-//            @RequestParam(name = "start_date") String startDate,
-//            @RequestParam(name = "end_date") String endDate,
-//            @RequestParam(name = "home_team") String homeTeam,
-//            @RequestParam(name = "visitor_team") String visitorTeam
-//    ) {
-//        return
-//    }
 }
