@@ -23,4 +23,9 @@ public class SecretController {
     public String getOpenAISecret() {
         return secretService.getOpenAISecret();
     }
+
+    @GetMapping("/serpapi_secret")
+    public String getSerpApiSecret() {
+        return secretService.getSerpAPISecret();
+    }
 }

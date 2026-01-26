@@ -48,4 +48,19 @@ public class SecretService {
             throw new RuntimeException("Failed to parse secret JSON", e);
         }
     }
+
+    public String getSerpAPISecret() {
+        GetSecretValueRequest request = GetSecretValueRequest.builder()
+                .secretId(secretProperties.getSerpApiSecretName())
+                .build();
+
+        String secretJson = secretsManagerClient.getSecretValue(request).secretString();
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            JsonNode node = objectMapper.readTree(secretJson);
+            return node.get("SERP_API_KEY").asText();
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to parse secret JSON", e);
+        }
+    }
 }

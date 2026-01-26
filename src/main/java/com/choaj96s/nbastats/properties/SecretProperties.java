@@ -9,6 +9,16 @@ public class SecretProperties {
     private String balldontlieSecretName;
     private String openaiSecretName;
 
+    public String getSerpApiSecretName() {
+        return serpApiSecretName;
+    }
+
+    public void setSerpApiSecretName(String serpApiSecretName) {
+        this.serpApiSecretName = serpApiSecretName;
+    }
+
+    private String serpApiSecretName;
+
     public String getBalldontlieSecretName() {
         return balldontlieSecretName;
     }

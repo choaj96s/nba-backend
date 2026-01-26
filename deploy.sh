@@ -13,15 +13,5 @@ aws ecr get-login-password --region us-west-2 | docker login --username AWS --pa
 # 4) 최신 이미지 pull
 docker pull $ECR_URL/nba-backend:latest
 
-# 5) docker-compose.yml 생성/업데이트
-cat > docker-compose.yml << 'EOF'
-version: "3.8"
-services:
-  backend:
-    image: 997754089670.dkr.ecr.us-west-2.amazonaws.com/nba-backend:latest
-    ports:
-      - "8080:8080"
-EOF
-
 # 6) 컨테이너 실행
 docker-compose up -d

@@ -13,6 +13,7 @@ spring:
 aws:
   balldontlie-secret-name: nba/balldontlie
   openai-secret-name: nba/openai
+  serpApi-secret-name: nba/serpapi
 
 ---
 spring:
